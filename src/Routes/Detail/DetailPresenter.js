@@ -76,7 +76,7 @@ const DetailPresenter = ({result, loading, error}) => loading
 	<Loader/></div>)
     : (
         <div><Helmet>
-        <title>{result.original_title ? result.original_title : result.original_name}{" "} | Nomflix`</title>
+        <title>{result.original_title ? result.original_title : result.original_name}{" "} | Nomflix</title>
     </Helmet><Container>
             <Backdrop
                 bgImage={result.poster_path

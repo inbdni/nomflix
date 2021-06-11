@@ -15,9 +15,9 @@ const Container = styled.div`
 `;
 
 const Footer = () => (
-  <Container><hr></hr>
-  <span>@Nomflix</span>
-  </Container>
+	<Container><hr></hr>
+		<span>@Nomflix</span>
+	</Container>
 );
 
 export default Footer;

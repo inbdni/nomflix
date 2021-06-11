@@ -3,64 +3,64 @@ import React from "react";
 import SearchPresenter from "./SearchPresenter";
 
 export default class extends React.Component {
-    state = {
-        movieResults: null,
-        tvResults: null,
-        searchTerm: "",
-        loading: false,
-        error: null
-    };
+	state = {
+		movieResults: null,
+		tvResults: null,
+		searchTerm: "",
+		loading: false,
+		error: null
+	};
 
-    handleSubmit = event => {
-        event.preventDefault();
-        const { searchTerm } = this.state;
-        if (searchTerm !== "") {
-            this.searchByTerm();
-        }
-    };
+	handleSubmit = event => {
+		event.preventDefault();
+		const { searchTerm } = this.state;
+		if (searchTerm !== "") {
+			this.searchByTerm();
+		}
+	};
 
-    updateTerm = event => {
-        const {
-            target: {value}
-        } = event;
-        this.setState({
-            searchTerm: value
-        });
-    };
+	updateTerm = event => {
+		const {
+			target: { value }
+		} = event;
+		this.setState({
+			searchTerm: value
+		});
+	};
 
-    searchByTerm = async () => {
-        const { searchTerm } = this.state;
-        this.setState({ loading: true });
-        try {
-            const {
-                data: {results: movieResults }
-            } = await MovieApi.search(searchTerm);
-            const {
-                data: {results: tvResults}
-            } = await TvApi.search(searchTerm);
-            this.setState({
-                movieResults,
-                tvResults
-            });
-        } catch {
-            this.setState({error: "Can't find results."});
-        } finally {
-            this.setState({loading: false});
-        }
-    };
+	searchByTerm = async () => {
+		const { searchTerm } = this.state;
+		this.setState({ loading: true });
+		try {
+			const {
+				data: { results: movieResults }
+			} = await MovieApi.search(searchTerm);
+			const {
+				data: { results: tvResults }
+			} = await TvApi.search(searchTerm);
+			this.setState({
+				movieResults,
+				tvResults
+			});
+		} catch {
+			this.setState({ error: "Can't find results." });
+		} finally {
+			this.setState({ loading: false });
+		}
+	};
 
-    render() {
-        const {movieResults, tvResults, searchTerm, handleSubmit, loading, error} = this.state;
-        console.log(this.state);
-        return (
-            <SearchPresenter
-                movieResults={movieResults}
-                tvResults={tvResults}
-                searchTerm={searchTerm}
-                updateTerm={this.updateTerm}
-                handleSubmit={this.handleSubmit}
-                loading={loading}
-                error={error}/>
-        );
-    }
+	render() {
+		const { movieResults, tvResults, searchTerm, handleSubmit, loading, error } = this.state;
+		console.log(this.state);
+		return (
+			<SearchPresenter
+				movieResults={movieResults}
+				tvResults={tvResults}
+				searchTerm={searchTerm}
+				updateTerm={this.updateTerm}
+				handleSubmit={this.handleSubmit}
+				loading={loading}
+				error={error} />
+		);
+	}
 }

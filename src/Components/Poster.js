@@ -41,41 +41,41 @@ const ImageContainer = styled.div`
   margin-bottom: 5px;
   position: relative;
   &:hover {
-    ${Image} {
-      opacity: 0.3;
-    }
-    ${Rating} {
-      opacity: 1;
-    }
+	${Image} {
+	  opacity: 0.3;
+	}
+	${Rating} {
+	  opacity: 1;
+	}
   }
 `;
 
 const Poster = ({ id, imageUrl, title, rating, year, isMovie = false }) => (
-  <Link to={isMovie ? `/movie/${id}` : `/show/${id}`}>
-    <Container>
-      <ImageContainer>
-        <Image bgUrl={imageUrl ? `https://image.tmdb.org/t/p/w300${imageUrl}`
-              : require("../assets/noPosterSmall.png").default} />
-        <Rating>
-          <span role="img" aria-label="rating">
-            ⭐️
-          </span>{" "}
-          {rating} / 10
-        </Rating>
-      </ImageContainer>
-      <Title>{title.length > 16 ? `${title.substring(0, 16)}...` : title}</Title>
-      <Year>{year}</Year>
-    </Container>
-  </Link>
+	<Link to={isMovie ? `/movie/${id}` : `/show/${id}`}>
+		<Container>
+			<ImageContainer>
+				<Image bgUrl={imageUrl ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+					: require("../assets/noPosterSmall.png").default} />
+				<Rating>
+					<span role="img" aria-label="rating">
+						⭐️
+		  </span>{" "}
+					{rating} / 10
+		</Rating>
+			</ImageContainer>
+			<Title>{title.length > 16 ? `${title.substring(0, 16)}...` : title}</Title>
+			<Year>{year}</Year>
+		</Container>
+	</Link>
 );
 
 Poster.propTypes = {
-  id: PropTypes.number.isRequired,
-  imageUrl: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  rating: PropTypes.number,
-  year: PropTypes.string,
-  isMovie: PropTypes.bool
+	id: PropTypes.number.isRequired,
+	imageUrl: PropTypes.string,
+	title: PropTypes.string.isRequired,
+	rating: PropTypes.number,
+	year: PropTypes.string,
+	isMovie: PropTypes.bool
 };
 
 export default Poster;
